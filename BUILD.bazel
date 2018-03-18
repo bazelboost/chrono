@@ -20,10 +20,18 @@ cc_library(
 	],
 	deps = [
 		"@com_github_bazelboost_config//:config",
+		"@com_github_bazelboost_system//:system",
+		"@com_github_bazelboost_throw_exception//:throw_exception",
 		"@com_github_bazelboost_assert//:assert",
 		"@com_github_bazelboost_winapi//:winapi",
-		"@com_github_bazelboost_system//:system",
-		"@com_github_bazelboost_detail//:detail",
-		"@com_github_bazelboost_ratio//:ratio"
+		"@com_github_bazelboost_mpl//:mpl",
+		"@com_github_bazelboost_ratio//:ratio",
+		"@com_github_bazelboost_move//:move",
+		"@com_github_bazelboost_static_assert//:static_assert",
+		"@com_github_bazelboost_core//:core",
+		"@com_github_bazelboost_integer//:integer",
+		"@com_github_bazelboost_type_traits//:type_traits",
+		"@com_github_bazelboost_utility//:utility",
+		"@com_github_bazelboost_typeof//:typeof"
 	],
 )
