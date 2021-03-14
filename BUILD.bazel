@@ -1,20 +1,15 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-_public_hdrs = [
-    "include/boost/*.hpp",
-    "include/boost/chrono/*.hpp",
-    "include/boost/chrono/io/*.hpp",
-    "include/boost/chrono/io/utility/*.hpp",
-    "include/boost/chrono/io_v1/*.hpp",
-    "include/boost/chrono/typeof/*.hpp",
-    "include/boost/chrono/typeof/chrono/*.hpp",
+_detail_hdrs = [
+    "include/boost/chrono/detail/**/*.hpp",
 ]
 
 cc_library(
-    name = "chrono_internal",
+    name = "chrono",
+    visibility = ["//visibility:public"],
     includes = ["include"],
-    hdrs = glob(["include/boost/**/*.hpp"], exclude = _public_hdrs),
-    srcs = glob(["src/*"]),
+    hdrs = glob(["include/boost/**/*.hpp"], exclude = _detail_hdrs),
+    srcs = glob(["src/*.cpp"] + _detail_hdrs),
     deps = [
         "@boost//config",
         "@boost//predef",
@@ -23,16 +18,5 @@ cc_library(
         "@boost//system",
         "@boost//utility",
         "@boost//throw_exception",
-    ],
-)
-
-cc_library(
-    name = "chrono",
-    visibility = ["//visibility:public"],
-    includes = ["include"],
-    hdrs = glob(_public_hdrs),
-    deps = [
-        ":chrono_internal",
-        "@boost//utility",
     ],
 )
